@@ -11,7 +11,7 @@ const Obstacle = () => {
 
   const { gameHasStarted } = useGameSystem()
   const { birdPosition } = useBird()
-
+  const { obstaclePosition } = useObstacle()
   const [bgPosition, setBgPosition] = React.useState<number>(0)
 
   React.useEffect(() => {
@@ -46,6 +46,7 @@ const Obstacles = () => {
   const { obstacleHeight,
     obstaclePosition,
     obstacleBottomHeight,
+    startPosition
   } = useObstacle()
 
   return (
@@ -64,7 +65,9 @@ const Obstacles = () => {
         width={OBSTACLE_WIDTH}
         height={obstacleBottomHeight}
         left={obstaclePosition}
-      />
+      >
+
+      </ObstacleElement>
     </div>
   )
 }

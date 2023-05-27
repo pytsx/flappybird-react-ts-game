@@ -11,7 +11,7 @@ interface IObstacleContext {
   restartObstacle: () => void
   newObstacle: () => void
   obstacleBottomHeight: number
-  obstacles: any[]
+  startPosition: number
 }
 
 const ObstacleContext = React.createContext<IObstacleContext>({
@@ -20,7 +20,7 @@ const ObstacleContext = React.createContext<IObstacleContext>({
   restartObstacle: () => { },
   newObstacle: () => { },
   obstacleBottomHeight: 0,
-  obstacles: []
+  startPosition: 0
 })
 
 interface IObstacleProvider extends IChildren {
@@ -30,43 +30,49 @@ interface IObstacleProvider extends IChildren {
 export const ObstacleProvider = ({ children, startPosition }: IObstacleProvider) => {
   const [obstacleHeight, setObstacleHeight] = React.useState<number>(0)
   const [obstacleBottomHeight, setObstacleBottomHeight] = React.useState<number>(0)
-
-
-  const [obstacles, setObstacles] = React.useState<number[]>([]);
-
   const [obstaclePosition, setObstaclePosition] = React.useState<number>(0)
+
+  const [firstObstaclePassed, setFirstObstaclePassed] = React.useState<boolean>(false);
+
 
   const { gameHasStarted, restartGame } = useGameSystem()
   const { incrementScore, restartScore } = useScore()
   const { birdPosition, restartBird } = useBird()
-
 
   function height() {
     return Math.random() * (GAME_HEIGHT - OBSTACLE_GAP)
   }
   function newObstacle() {
     let newHeight = height()
+
     if (newHeight < GAME_HEIGHT - OBSTACLE_GAP - 100 && newHeight > 100) {
-      setObstacles(prev => [...prev, newHeight])
+
       setObstacleHeight(newHeight)
       setObstacleBottomHeight(GAME_HEIGHT - newHeight - OBSTACLE_GAP)
+
     } else {
       newObstacle()
     }
+
     setObstaclePosition(GAME_WIDTH + startPosition)
-    if (gameHasStarted) {
-      incrementScore()
+    if (!firstObstaclePassed) {
+      setFirstObstaclePassed(true);
     }
   }
 
   function restartObstacle() {
     setObstacleHeight(0)
+    setObstacleBottomHeight(0)
+    setObstaclePosition(GAME_WIDTH + startPosition)
+    restartScore()
+    restartGame()
+    restartBird()
   }
 
 
   React.useEffect(() => {
     let obstacleID: number;
-    if (gameHasStarted && obstaclePosition >= -OBSTACLE_WIDTH / 4) {
+    if (gameHasStarted && obstaclePosition >= -OBSTACLE_WIDTH / 2) {
       obstacleID = setInterval(() => {
         setObstaclePosition(prev => prev -= UNIT * 3)
       }, 24)
@@ -74,6 +80,9 @@ export const ObstacleProvider = ({ children, startPosition }: IObstacleProvider)
       return () => clearInterval(obstacleID)
     } else {
       newObstacle()
+      if (gameHasStarted && firstObstaclePassed) {
+        incrementScore();
+      }
     }
   }, [gameHasStarted, obstaclePosition])
 
@@ -87,15 +96,14 @@ export const ObstacleProvider = ({ children, startPosition }: IObstacleProvider)
       && obstaclePosition >= GAME_WIDTH / 2 - OBSTACLE_WIDTH
     ) {
       if ((hasCollideWithTopObstacle || hasCollideWithBottomObstacle)) {
-        restartScore()
-        restartGame()
-        restartBird()
+
+        restartObstacle()
       }
     }
   }, [birdPosition])
 
 
-  return <ObstacleContext.Provider value={{ obstacles, obstacleHeight, obstaclePosition, restartObstacle, newObstacle, obstacleBottomHeight }}>
+  return <ObstacleContext.Provider value={{ startPosition, obstacleHeight, obstaclePosition, restartObstacle, newObstacle, obstacleBottomHeight }}>
     {children}
   </ObstacleContext.Provider>
 }
