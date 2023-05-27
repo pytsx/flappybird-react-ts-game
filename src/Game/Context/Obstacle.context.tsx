@@ -36,7 +36,7 @@ export const ObstacleProvider = ({ children }: IChildren) => {
   }
   function newObstacle() {
     let newHeight = height()
-    if (newHeight < 615 && newHeight > 330) {
+    if (newHeight < GAME_HEIGHT - OBSTACLE_GAP - 100 && newHeight > 100) {
       setObstacleHeight(newHeight)
     } else {
       newObstacle()
