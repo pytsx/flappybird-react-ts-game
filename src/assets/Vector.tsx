@@ -2,7 +2,7 @@ export const Bird_img = ({ variant }: { variant: number }) => {
   switch (variant) {
     case 1:
 
-      return <svg style={{ transition: 'all 1s ease' }} width="100%" height="100%" viewBox="0 0 171 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+      return <svg style={{ transition: 'none' }} width="100%" height="100%" viewBox="0 0 171 122" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M39 10H49V20H39V10Z" fill="black" />
         <path d="M49 10H59V20H49V10Z" fill="black" />
         <path d="M59 0H69V10H59V0Z" fill="black" />
@@ -76,13 +76,13 @@ export const Bird_img = ({ variant }: { variant: number }) => {
         <path d="M0 92H10V102H0V92Z" fill="black" />
         <path d="M0 80H10V92H0V80Z" fill="black" />
         <path d="M0 70H10V80H0V70Z" fill="black" />
-        <path d="M59.4 10H90V20H59.4V30H39V40H29V30H39V20H59.4V10Z" fill="#FDE4BB" />
+        <path d="M59.4 10H90V20H59.4V30H39V40H29V30H39V20H59.4V10Z" fill="#FEC400" />
         <path d="M59 20H80V50H90V60H100V70H90V80H69V70H60V60H19V40H39V30H59V20Z" fill="#FEC400" />
         <path d="M60 80H80V90H90V100H100V112H50V102V90H60V80Z" fill="#F57B00" />
       </svg>;
     case 2:
 
-      return <svg style={{ transition: 'all 1s ease' }} width="100%" height="100%" viewBox="0 0 172 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+      return <svg style={{ transition: 'none' }} width="100%" height="100%" viewBox="0 0 172 122" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M40 10H50V20H40V10Z" fill="black" />
         <path d="M50 10H60V20H50V10Z" fill="black" />
         <path d="M60 0H70V10H60V0Z" fill="black" />
@@ -155,14 +155,14 @@ export const Bird_img = ({ variant }: { variant: number }) => {
         <path d="M10 80H21V90H10V80Z" fill="black" />
         <path d="M0 70H10V80H0V70Z" fill="black" />
         <path d="M0 60H10V70H0V60Z" fill="black" />
-        <path d="M60.4 10H91V20H60.4V30H40V40H30V30H40V20H60.4V10Z" fill="#FDE4BB" />
+        <path d="M60.4 10H91V20H60.4V30H40V40H30V30H40V20H60.4V10Z" fill="#FEC400" />
         <path d="M60 20H81V50H91V60H101V70H91V80H70V60H60V50H20V40H40V30H60V20Z" fill="#FEC400" />
         <path d="M61 80H81V90H91V100H101V112H51V102H31V90H61V80Z" fill="#F57B00" />
       </svg>
         ;
     case 3:
 
-      return <svg style={{ transition: 'all 1s ease' }} width="100%" height="100%" viewBox="0 0 171 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+      return <svg style={{ transition: 'none' }} width="100%" height="100%" viewBox="0 0 171 122" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M39 10H49V20H39V10Z" fill="black" />
         <path d="M49 10H59V20H49V10Z" fill="black" />
         <path d="M59 0H69V10H59V0Z" fill="black" />
@@ -234,7 +234,7 @@ export const Bird_img = ({ variant }: { variant: number }) => {
         <path d="M0 52H10V62H0V52Z" fill="black" />
         <path d="M0 62H10V70H0V62Z" fill="black" />
         <path d="M10 70H20V80H10V70Z" fill="black" />
-        <path d="M59.4 10H90V20H59.4V30H39V20H59.4V10Z" fill="#FDE4BB" />
+        <path d="M59.4 10H90V20H59.4V30H39V20H59.4V10Z" fill="#FEC400" />
         <path d="M59 20H80V50H90V60H100V70H90V80H60V70H70V50H60V40H50V30H59V20Z" fill="#FEC400" />
         <path d="M50 80H80V90H90V100H100V112H50V102H30V90H50V80Z" fill="#F57B00" />
       </svg>

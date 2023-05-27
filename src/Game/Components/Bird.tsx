@@ -12,13 +12,16 @@ const Bird = () => {
 
   const { birdPosition, birdAngle } = useBird()
   const { gameHasStarted } = useGameSystem()
-  const [birdFrame, setBirdFrame] = React.useState<number>(0)
+  const [birdFrame, setBirdFrame] = React.useState<number>(1)
   React.useEffect(() => {
-    const intervalID = setInterval(() => {
-      setBirdFrame(prev => prev == 0 ? 1 : prev == 1 ? 2 : 0)
-    }, 60)
-    return () => clearInterval(intervalID)
-  }, [birdPosition])
+    if (gameHasStarted) {
+      const intervalID = setInterval(() => {
+        setBirdFrame(prev => prev == 1 ? 2 : prev == 2 ? 3 : 1)
+
+      }, 280)
+      return () => clearInterval(intervalID)
+    }
+  }, [gameHasStarted])
   return (
     <BirdElement
       gameHasStarted={gameHasStarted}
@@ -27,7 +30,7 @@ const Bird = () => {
       left={GAME_WIDTH / 2}
       angle={birdAngle}
     >
-      <Bird_img variant={1} />
+      <Bird_img variant={birdFrame} />
     </BirdElement>)
 }
 
@@ -50,6 +53,6 @@ const BirdElement = styled.div < IBirdStyled>`
   top: ${props => props.top}px;
   left: ${props => props.left}px;
   transform: ${props => `rotate(${props.angle}deg) `};
-  transition: all 40ms linear;
+  transition: all 60ms linear;
   overflow: hidden;
 `
