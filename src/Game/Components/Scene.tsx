@@ -14,7 +14,7 @@ const Scene = ({ children }: IScene) => {
   const { gameHasStarted } = useGameSystem()
   const [bgPosition, setBgPosition] = React.useState<number>(0)
   React.useEffect(() => {
-    setBgPosition(prev => prev += .32)
+    setBgPosition(prev => prev += UNIT / 3)
   }, [birdPosition])
 
   React.useEffect(() => {
@@ -26,7 +26,7 @@ const Scene = ({ children }: IScene) => {
 
   return (
     <GameBox
-      moveBG={bgPosition}
+      moveBG={-bgPosition}
       bg={bg}
       onClick={() => jump()}
       height={GAME_HEIGHT}

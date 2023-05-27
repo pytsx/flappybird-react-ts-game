@@ -1,21 +1,21 @@
 import styled from "@emotion/styled"
-import { OBSTACLE_WIDTH, GAME_HEIGHT, UNIT } from "../Global"
-import { useObstacle } from "../Context/Obstacle.context"
-import pipe from "../../assets/pipe.png"
-import floor from '../../assets/floor.png'
-import { useBird, useGameSystem } from "../Context"
+import { OBSTACLE_WIDTH, GAME_HEIGHT, UNIT } from "../../Global"
+import { useObstacle } from "../../Context/Obstacle.context"
+import pipe from "../../../assets/pipe.png"
+import floor from '../../../assets/floor.png'
+import { useBird, useGameSystem } from "../../Context"
 import React from "react"
+
 
 const Obstacle = () => {
 
-  const { obstacleHeight, obstaclePosition, obstacleBottomHeight } = useObstacle()
   const { gameHasStarted } = useGameSystem()
   const { birdPosition } = useBird()
 
   const [bgPosition, setBgPosition] = React.useState<number>(0)
 
   React.useEffect(() => {
-    setBgPosition(prev => prev -= UNIT)
+    setBgPosition(prev => prev -= UNIT * 3)
   }, [birdPosition])
 
   React.useEffect(() => {
@@ -26,6 +26,30 @@ const Obstacle = () => {
 
   return (
     <>
+      <Obstacles />
+      <div style={{
+        position: 'absolute',
+        bottom: '0%',
+        height: 64,
+        width: '100%',
+        backgroundImage: `url(${floor})`,
+        backgroundPosition: `${bgPosition}px 0`,
+        zIndex: 3000
+      }}>
+      </div>
+    </>
+
+  )
+}
+const Obstacles = () => {
+
+  const { obstacleHeight,
+    obstaclePosition,
+    obstacleBottomHeight,
+  } = useObstacle()
+
+  return (
+    <div style={{ height: '100%', position: 'absolute' }}>
       <ObstacleElement
         top={0}
         bg={pipe}
@@ -41,22 +65,7 @@ const Obstacle = () => {
         height={obstacleBottomHeight}
         left={obstaclePosition}
       />
-
-
-      <div style={{
-        position: 'absolute',
-        bottom: '0%',
-        height: 64,
-        width: '100%',
-        backgroundImage: `url(${floor})`,
-        backgroundPosition: `${bgPosition}px 0`,
-        zIndex: 3000
-      }}>
-      </div>
-
-
-
-    </>
+    </div>
   )
 }
 
@@ -74,7 +83,6 @@ interface IObstacleStyled {
 
 const ObstacleElement = styled.div<IObstacleStyled>`
   position: relative;
-  // background-color: #2E7D32;
   top: ${props => props.top}px;
   left: ${props => props.left}px;
   width: ${props => props.width}px;
