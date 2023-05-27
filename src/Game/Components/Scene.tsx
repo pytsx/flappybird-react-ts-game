@@ -14,7 +14,7 @@ const Scene = ({ children }: IScene) => {
   const { gameHasStarted } = useGameSystem()
   const [bgPosition, setBgPosition] = React.useState<number>(0)
   React.useEffect(() => {
-    setBgPosition(prev => prev += UNIT / 3)
+    setBgPosition(prev => prev += .32)
   }, [birdPosition])
 
   React.useEffect(() => {

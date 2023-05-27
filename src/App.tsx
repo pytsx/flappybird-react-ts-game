@@ -7,9 +7,9 @@ function App() {
 
   let increment = 500
 
-  const Obstacle1 = createObstacle({ increment: increment / 2 })
-  const Obstacle2 = createObstacle({ increment: increment * 1.5 })
-  const Obstacle3 = createObstacle({ increment: increment * 2.5 })
+  const Obstacle1 = createObstacle({ increment: increment })
+  const Obstacle2 = createObstacle({ increment: increment * 2 })
+  const Obstacle3 = createObstacle({ increment: increment * 3.5 })
   const Obstacle4 = createObstacle({ increment: increment * 3 })
 
 
