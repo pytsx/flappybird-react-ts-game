@@ -27,7 +27,7 @@ const Bird = () => {
       gameHasStarted={gameHasStarted}
       size={BIRD_SIZE}
       top={birdPosition}
-      left={GAME_WIDTH / 2}
+      left={(GAME_WIDTH / 2) - (BIRD_SIZE / 2)}
       angle={birdAngle}
     >
       <Bird_img variant={birdFrame} />
