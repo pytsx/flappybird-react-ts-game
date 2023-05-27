@@ -4,9 +4,6 @@ import { useBird } from "../Context/Bird.context"
 import { useGameSystem } from "../Context/GameSystem.context"
 import { Bird_img } from "../../assets/Vector"
 import React from "react"
-import bird_1 from '../../assets/bird_1.svg'
-import bird_2 from '../../assets/bird_2.svg'
-import { BirdsFrame } from '../../assets/BirdsFrame'
 
 const Bird = () => {
 
@@ -53,6 +50,6 @@ const BirdElement = styled.div < IBirdStyled>`
   top: ${props => props.top}px;
   left: ${props => props.left}px;
   transform: ${props => `rotate(${props.angle}deg) `};
-  transition: all 60ms linear;
+  transition: all 80ms linear;
   overflow: hidden;
 `

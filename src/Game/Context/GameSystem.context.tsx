@@ -1,5 +1,8 @@
 import React from "react"
 import { IChildren } from "../Types/utils"
+import { useBird } from "./Bird.context"
+import { useObstacle } from "./Obstacle.context"
+import { useScore } from "./Score.context"
 
 interface IGameSystemContext {
   gameHasStarted: boolean
@@ -15,6 +18,7 @@ const GameSystemContext = React.createContext<IGameSystemContext>({
 
 export const GameSystemProvider = ({ children }: IChildren) => {
   const [gameHasStarted, setGameHasStarted] = React.useState<boolean>(false)
+
 
   function restartGame() {
     setGameHasStarted(false)

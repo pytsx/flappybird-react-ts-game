@@ -37,7 +37,9 @@ export const ObstacleProvider = ({ children, startPosition }: IObstacleProvider)
 
   const { gameHasStarted, restartGame } = useGameSystem()
   const { incrementScore, restartScore } = useScore()
-  const { birdPosition, restartBird } = useBird()
+  const { birdPosition, restartBird, stop } = useBird()
+
+  const [stopObstacle, setStopObstacle] = React.useState<boolean>(false)
 
   function height() {
     return Math.random() * (GAME_HEIGHT - OBSTACLE_GAP)
@@ -61,14 +63,15 @@ export const ObstacleProvider = ({ children, startPosition }: IObstacleProvider)
   }
 
   function restartObstacle() {
+    setFirstObstaclePassed(false)
+
+    restartBird()
+
+
     setObstacleHeight(0)
     setObstacleBottomHeight(0)
     setObstaclePosition(GAME_WIDTH + startPosition)
-    restartScore()
-    restartGame()
-    restartBird()
   }
-
 
   React.useEffect(() => {
     let obstacleID: number;
@@ -88,17 +91,17 @@ export const ObstacleProvider = ({ children, startPosition }: IObstacleProvider)
 
 
   React.useEffect(() => {
+
     let hasCollideWithTopObstacle = birdPosition >= 0 && birdPosition < obstacleHeight + BIRD_SIZE / 1.5
-    let hasCollideWithBottomObstacle = birdPosition <= GAME_HEIGHT && birdPosition >= GAME_HEIGHT - obstacleBottomHeight - BIRD_SIZE / 1.5
+    let hasCollideWithBottomObstacle = birdPosition <= GAME_HEIGHT && birdPosition >= GAME_HEIGHT - obstacleBottomHeight
     let birdDistanteToLeft = (GAME_WIDTH / 2)
     if (
       obstaclePosition <= birdDistanteToLeft
       && obstaclePosition >= GAME_WIDTH / 2 - OBSTACLE_WIDTH
+      && (hasCollideWithTopObstacle || hasCollideWithBottomObstacle)
     ) {
-      if ((hasCollideWithTopObstacle || hasCollideWithBottomObstacle)) {
 
-        restartObstacle()
-      }
+      restartObstacle()
     }
   }, [birdPosition])
 

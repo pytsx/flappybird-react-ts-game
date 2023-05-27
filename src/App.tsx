@@ -1,7 +1,7 @@
-import { Scene, Score, Obstacle, Bird } from "./Game/Components"
+import { Scene, Score, Bird } from "./Game/Components"
 import { Container } from "./Game/Components/Container"
 import createObstacle from "./Game/Components/Obstacle/createObstacle"
-import { ObstacleProvider, useGameSystem } from "./Game/Context"
+import { useGameSystem } from "./Game/Context"
 import { GAME_WIDTH } from "./Game/Global"
 import './style.css'
 function App() {
