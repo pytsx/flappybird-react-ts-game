@@ -14,19 +14,19 @@ const Scene = ({ children }: IScene) => {
   const { gameHasStarted } = useGameSystem()
   const [bgPosition, setBgPosition] = React.useState<number>(0)
   React.useEffect(() => {
-    setBgPosition(prev => prev += .32)
-  }, [birdPosition])
-
-  React.useEffect(() => {
     if (!gameHasStarted) {
+      let intervalID = setInterval(() => {
 
-      setBgPosition(0)
+        setBgPosition(prev => prev += UNIT / 10)
+      }, 30)
+
+      return () => clearInterval(intervalID)
     }
   }, [gameHasStarted])
 
   return (
     <GameBox
-      moveBG={0}
+      moveBG={-bgPosition}
       bg={bg}
       onClick={() => jump()}
       height={GAME_HEIGHT}
