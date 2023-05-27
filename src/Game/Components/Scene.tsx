@@ -26,7 +26,7 @@ const Scene = ({ children }: IScene) => {
 
   return (
     <GameBox
-      moveBG={-bgPosition}
+      moveBG={0}
       bg={bg}
       onClick={() => jump()}
       height={GAME_HEIGHT}
